@@ -17,7 +17,7 @@ def Start():
 			print("RYGG!!");
 			m.backward(-1*speed_value);
 		else:
-			m.left();
+			m.left(100);
 		
 
 Start();
