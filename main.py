@@ -11,9 +11,11 @@ def Start():
 	while(not ZumoButton().button_pressed()):
 		speed_value,turn_value = d.get_suggestion();
 		
-		print(speed_value);
-		
-		m.forward(speed_value*0.2);
+		print("forward" + str(speed_value));
+		if speed_value<0:
+			m.backward(1);
+		else:
+			m.forward(speed_value*0.2);
 		
 
 Start();
