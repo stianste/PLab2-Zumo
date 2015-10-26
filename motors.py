@@ -8,6 +8,9 @@ class Motors():
     def __init__(self):
         self.setup()
 
+	def setMax(self,max):
+		self.max = max;
+		
     def setup(self):
         self.max = 1024
         self.high = 500
