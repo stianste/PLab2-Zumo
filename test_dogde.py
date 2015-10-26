@@ -6,13 +6,13 @@ class Test_dogde():
 		self.ultrasonic = Ultrasonic();
 	
 	def get_suggestion(self):
-		speed_value = 0;
+		speed_value = 1;
 		turn_value = 0.0;
 		distance = self.ultrasonic.update();
 		print("distance: " + str(distance));
 		
 		if(distance<13):
-			speed_value = -(5/distance);
+			speed_value = -(1/distance);
 		elif(distance>15 and distance<30):
 			speed_value =(float((distance)/30)); 
 		
