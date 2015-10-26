@@ -13,9 +13,10 @@ def Start():
 		
 		print("forward" + str(speed_value));
 		if speed_value<0:
-			m.backward(1);
+			print("RYGG!!");
+			m.backward(-3*speed_value);
 		else:
-			m.forward(speed_value*0.2);
+			m.forward(3*speed_value);
 		
 
 Start();
