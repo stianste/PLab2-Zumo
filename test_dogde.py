@@ -4,13 +4,15 @@ class Test_dogde():
 		self.priority = 1;
 	
 	def get_suggestion(self):
-		speed_value = 1;
-		turn_value = 0;
+		speed_value = 1.0;
+		turn_value = 0.0;
 		distance = self.ultrasonic.update();
 		
 		if(distance<15):
-			turn_value = 1;
-		elif(distance<30):
-			turn_value =(15/distance); 
+			speed_value=0;;
+		elif(distance<50):
+			speed_value =(float(1/(distance-15)); 
 		
 		return speed_value, turn_value;
+
+		

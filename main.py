@@ -10,10 +10,9 @@ def Start():
 	d = Test_dogde();
 	while(not ZumoButton().button_pressed()):
 		speed_value,turn_value = d.get_suggestion();
+		print(speed_value);
 		
-		if(turn_value>0):
-			m.left(turn_value);
-		else:
-			m.forward(0.1);
+		m.forward(speed_value*0.2);
+		
 
 Start();
