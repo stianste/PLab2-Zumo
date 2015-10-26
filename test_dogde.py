@@ -3,6 +3,7 @@ from ultrasonic import *
 class Test_dogde():
 	def __test_dogde__(self):
 		self.priority = 1;
+		self.ultrasonic = Ultrasonic();
 	
 	def get_suggestion(self):
 		speed_value = 1.0;
