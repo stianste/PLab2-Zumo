@@ -10,14 +10,14 @@ def Start():
 	m.setMax(250);
 	d = Test_dogde();
 	while(not ZumoButton().button_pressed()):
-		speed_value,turn_value = d.get_suggestion();
+		score,speed_value,turn_value = d.get_suggestion();
 		
 		print("forward" + str(speed_value));
 		if speed_value<0:
 			print("RYGG!!");
 			m.backward(-1*speed_value);
 		else:
-			m.forward(speed_value);
+			m.left();
 		
 
 Start();
