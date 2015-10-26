@@ -1,15 +1,14 @@
 class Behavior():
     # constructor that takes in the bbcon this Behavior is reporting to, what sensors it uses,
     # if it is currently active, and a static priority. 
-    def __init__(self, bbcon, sensob, active_flag, static_priority):
-        self.bbcon = bbcon
-        self.sensob = sensob
+    def __init__(self, sensobs, active_flag, static_priority):
+        self.sensobs = sensobs
         self.active_flag = active_flag
-        self.motor_recommendation = [] #This should maybe be a tuple. 
-        #static_priority is a static, final varibale. It should not be changed after init. Dont know how to do this in python
+        self.motor_recommendation = [] # List of possible motor recommendations ? Can be implemented differently for each behavior
+        # static_priority is a static, final varibale. It should not be changed after init. Dont know how to do this in python
         self.static_priority = static_priority
 
-        #Below are some effectivley abstract classes. Each subclass of Behavior have to define these functions themselves. 
+        # Below are some effectivley abstract classes. Each subclass of Behavior have to define these functions themselves. 
     def _update_flag(self):
         # REMEMBER TO DO THIS
 
@@ -21,7 +20,6 @@ class Behavior():
         pass
 
     def get_update(self):
-        
         self._sense_and_act()
         self.weight = self.static_priority * self.match_degree
         return (self.weight, self.motor_request)

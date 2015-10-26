@@ -1,6 +1,8 @@
 from time import sleep
+from Arbitrator import Arbitrator
 from reflectance_sensors import ReflectanceSensors
 from camera import Camera
+from derpBehaviour import Derp
 
 class BBCON():
 
@@ -8,7 +10,7 @@ class BBCON():
         #init instance variables from input.
         self.behaviors = set(behaviors)
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
-        self.arbitrator = arbitrator()
+        self.arbitrator = Arbitrator()
         self.motors = Motors()
 
     def _update_sensobs(self):
@@ -33,7 +35,8 @@ rs = ReflectanceSensors()
 camera = Camera()
 sensobs = {'ir' : rs, 'camera': camera}
 
+behaviors = [Derp(10)]
 
-bbcon = BBCON([], sensobs)
+bbcon = BBCON(behaviors, sensobs)
 while True:
   bbcon.loop()
