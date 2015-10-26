@@ -7,7 +7,7 @@ def Start():
 	ZumoButton().wait_for_press();
 	sleep(3);
 	m = Motors();
-	m.setMax(500);
+	m.setMax(250);
 	d = Test_dogde();
 	while(not ZumoButton().button_pressed()):
 		speed_value,turn_value = d.get_suggestion();
