@@ -14,7 +14,7 @@ class Test_dogde():
 		if(distance<10):
 			speed_value=-1;
 		elif(distance>15 and distance<100):
-			speed_value =(float(1/(distance-10)); 
+			speed_value =(float(1/(distance-10))); 
 		
 		return speed_value, turn_value;
 
