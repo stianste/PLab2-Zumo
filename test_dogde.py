@@ -1,3 +1,4 @@
+from ultrasonic import *
 
 class Test_dogde():
 	def __test_dogde__(self):
