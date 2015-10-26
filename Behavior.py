@@ -10,14 +10,9 @@ class Behavior():
         self.static_priority = static_priority
 
         #Below are some effectivley abstract classes. Each subclass of Behavior have to define these functions themselves. 
-    def _concider_deactivation(self):
-        #remember to return true if the behavior was deactivated, and false if not 
-        #Do also remember to update self.active_flag accordingly
-        return False
-    def _concider_activation(self):
-        #remember to return true if the behavior was activated, and false if not 
-        #Do also remember to update self.active_flag accordingly
-        return False
+    def _update_flag(self):
+        # REMEMBER TO DO THIS
+
     def _sense_and_act(self):
         #This is the main function of the Behavoir class. This function should:
         #1 get an update from all sensobs in its sensob list self.sensob
@@ -26,15 +21,7 @@ class Behavior():
         pass
 
     def get_update(self):
-        #checks if the Behavior should be active or inactive, and tells the bbcon about its status
-        if self._concider_activation():
-            this.bbcon.activate_behavior(self)
-        if self._concider_deactivation():
-            this.bbcon.deactivate_behavior(self)
-        if not self.active_flag:
-            #returns -1 if the Behavior has become inactive during get_update
-            #This has to be handeled by the bbcon
-            return -1
+        
         self._sense_and_act()
         self.weight = self.static_priority * self.match_degree
         return (self.weight, self.motor_request)

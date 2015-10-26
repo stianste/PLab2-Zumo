@@ -1,13 +1,15 @@
 from time import sleep
+from reflectance_sensors import ReflectanceSensors
+from camera import Camera
 
 class BBCON():
 
-    def __init__(self, behaviors, sensobs, motob):
+    def __init__(self, behaviors, sensobs):
         #init instance variables from input.
         self.behaviors = set(behaviors)
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
         self.arbitrator = arbitrator()
-        self.motob = motob
+        self.motors = Motors()
 
     def _update_sensobs(self):
           for ob in self.sensobs:
@@ -15,14 +17,23 @@ class BBCON():
 
     def _update_behaviors(self):
         for behavior in self.behaviors:
-            MR = behavior.get_update() # this also toggels the active_flag for the behavior
+            mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
-              self.arbitrator.add_mr(MR)
+              self.arbitrator.add_mr(mr)
 
     def loop(self):
       self._update_sensobs()
       self._update_behaviors()
-      MR = self.arbitrator.choose_action()
-      self.motob.update(MR)
+      mr = self.arbitrator.choose_action()
+      self.motors.do(mr)
       sleep(1)
 
+
+rs = ReflectanceSensors()
+camera = Camera()
+sensobs = {'ir' : rs, 'camera': camera}
+
+
+bbcon = BBCON([], sensobs)
+while True:
+  bbcon.loop()
