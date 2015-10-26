@@ -8,18 +8,8 @@ class b_hunger(Behavior):
         #If the hunger_level is below 50, we are hungry. 
         self.hunger_level = 70
 
-    def _concider_deactivation(self):
-        if self.hunger_level >= 50:
-            self.active_flag = False
-            return True
-        self.active_flag = True
-        return False
-    def _concider_activation(self):
-        if self.hunger_level < 50:
-            self.active_flag = True
-            return True
-        self.active_flag = False
-        return False
+    def _update_flag(self):
+        this.active_flag = not this.active_flag
 
     def _sense_and_act(self):
         #This is where we would check if the behavior is hungry, and look for the food source
