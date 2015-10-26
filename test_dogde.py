@@ -1,7 +1,7 @@
 from ultrasonic import *
 
 class Test_dogde():
-	def __test_dogde__(self):
+	def __init__(self):
 		self.priority = 1;
 		self.ultrasonic = Ultrasonic();
 	
