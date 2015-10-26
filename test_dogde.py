@@ -11,9 +11,11 @@ class Test_dogde():
 		distance = self.ultrasonic.update();
 		print("distance: " + str(distance));
 		
-		if(distance<13):
+		if(distance<10):
 			speed_value = -(1/distance);
-		elif(distance>15 and distance<30):
+		elif distance<15:
+			speed_value = 0;
+		elif(distance<40):
 			speed_value =(float((distance)/30)); 
 		
 		return speed_value, turn_value;
