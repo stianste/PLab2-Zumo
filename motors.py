@@ -117,7 +117,7 @@ class Motors():
     self.max = max;
 
   def do(self, mr):
-    if mr.degress == 0:
+    if mr.degrees == 0:
       if mr.speed > 0:
         self.forward()
       else:

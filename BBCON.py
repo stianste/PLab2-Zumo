@@ -37,7 +37,7 @@ rs = ReflectanceSensors()
 camera = Camera()
 sensobs = {'ir' : rs, 'camera': camera}
 
-behaviors = [Derp(10), driveToColor(sensobs, 10)]
+behaviors = [Derp(8), driveToColor(sensobs, 10)]
 
 bbcon = BBCON(behaviors, sensobs)
 while True:

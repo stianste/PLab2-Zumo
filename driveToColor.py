@@ -37,11 +37,15 @@ class driveToColor(Behavior):
         return (-((center-center_blue)/center) * 26.75)
 
     def _sense_and_act(self):
-        img = Imager(image=self.sensob['camera'].get_value(), mode='HSV') # Get the image from the camera sensob, the value should be updated from the bbcon
+        img = Imager(image=self.sensobs['camera'].get_value(), mode='HSV') # Get the image from the camera sensob, the value should be updated from the bbcon
         return self._determine_angle(img)
 
 
 
     def get_update(self): # The bbcon asks every nth second for an update, checking if the active-flag has changed
       angle = round(self._sense_and_act())
-      return Motor_Rec(10, angle, 1, 2)
+      print(angle)
+      if abs(angle) < 5:
+        return Motor_Rec(0, 0, 0, 2)
+      else:
+        return Motor_Rec(10, angle, 2, 2)
