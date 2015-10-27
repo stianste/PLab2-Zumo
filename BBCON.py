@@ -4,6 +4,7 @@ from reflectance_sensors import ReflectanceSensors
 from camera import Camera
 from derp import Derp
 from motors import Motors
+from driveToColor import driveToColor
 
 class BBCON():
 
@@ -36,7 +37,7 @@ rs = ReflectanceSensors()
 camera = Camera()
 sensobs = {'ir' : rs, 'camera': camera}
 
-behaviors = [Derp(10)]
+behaviors = [Derp(10), driveToColor(sensobs, 10)]
 
 bbcon = BBCON(behaviors, sensobs)
 while True:
