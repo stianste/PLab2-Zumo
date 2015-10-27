@@ -22,10 +22,10 @@ class driveToColor(Behavior):
       first = 0
       last = w
       for i in range(w):
-        hue = img.get_pixel(i,0)[0] # If this one is above 100 we can assume it is blue for now
-        if hue > 100 and first == 0:
+        rgb = img.get_pixel(i,0) # If this one is above 100 we can assume it is blue for now
+        if rgb[2] > rgb[0] and rgb[2] > rgb[0] and first == 0:
           first = i
-        elif hue > 100:
+        if rgb[2] > rgb[0] and rgb[2] > rgb[0]:
           last = i
 
       center = w // 2
@@ -37,7 +37,7 @@ class driveToColor(Behavior):
         return (-((center-center_blue)/center) * 26.75)
 
     def _sense_and_act(self):
-        img = Imager(image=self.sensobs['camera'].get_value(), mode='HSV') # Get the image from the camera sensob, the value should be updated from the bbcon
+        img = Imager(image=self.sensob['camera'].get_value(), mode='RGB') # Get the image from the camera sensob, the value should be updated from the bbcon
         return self._determine_angle(img)
 
 
