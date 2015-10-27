@@ -2,7 +2,8 @@ from time import sleep
 from Arbitrator import Arbitrator
 from reflectance_sensors import ReflectanceSensors
 from camera import Camera
-from derpBehaviour import Derp
+from derp import Derp
+from motors import Motors
 
 class BBCON():
 
@@ -15,13 +16,13 @@ class BBCON():
 
     def _update_sensobs(self):
           for ob in self.sensobs:
-              ob.update()
+              self.sensobs[ob].update()
 
     def _update_behaviors(self):
         for behavior in self.behaviors:
             mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
-              self.arbitrator.add_mr(mr)
+                self.arbitrator.add_mr(mr)
 
     def loop(self):
       self._update_sensobs()

@@ -10,14 +10,16 @@ class Behavior():
 
         # Below are some effectivley abstract classes. Each subclass of Behavior have to define these functions themselves. 
     def _update_flag(self):
-        # REMEMBER TO DO THIS
+     	# REMEMBER TO DO THIS
+        return
 
     def _sense_and_act(self):
         #This is the main function of the Behavoir class. This function should:
         #1 get an update from all sensobs in its sensob list self.sensob
         #2 make a decision based on the sensor inputs
         #3 update self.motor_recommandations and self.match_degree based on the decision
-        pass
+        return
+
 
     def get_update(self):
         self._sense_and_act()
