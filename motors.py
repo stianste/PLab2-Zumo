@@ -121,7 +121,8 @@ class Motors():
       if mr.speed > 0:
         self.forward(speed=mr.speed, dur=mr.duration)
       else:
-        self.backward(speed=mr.speed, dur=mr.duration)
+        s = mr.speed * -1
+        self.backward(speed=s)
     else:
       if mr.degrees > 0:
         self.right(speed=mr.speed, dur=mr.duration)
