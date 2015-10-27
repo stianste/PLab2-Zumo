@@ -37,7 +37,7 @@ class driveToColor(Behavior):
         return (-((center-center_blue)/center) * 26.75)
 
     def _sense_and_act(self):
-        img = Imager(image=self.sensob['camera'].get_value(), mode='RGB') # Get the image from the camera sensob, the value should be updated from the bbcon
+        img = Imager(image=self.sensobs['camera'].get_value(), mode='RGB') # Get the image from the camera sensob, the value should be updated from the bbcon
         return self._determine_angle(img)
 
 
@@ -48,4 +48,4 @@ class driveToColor(Behavior):
       if abs(angle) < 5:
         return Motor_Rec(0, 0, 0, 2)
       else:
-        return Motor_Rec(10, angle, 2, 2)
+        return Motor_Rec(10, angle, 1, 1)
