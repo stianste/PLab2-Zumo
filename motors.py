@@ -119,12 +119,12 @@ class Motors():
   def do(self, mr):
     if mr.degrees == 0:
       if mr.speed > 0:
-        self.forward(speed=mr.speed)
+        self.forward(speed=mr.speed, dur=mr.duration)
       else:
-        self.backward(speed=mr.speed)
+        self.backward(speed=mr.speed, dur=mr.duration)
     else:
       if mr.degrees > 0:
-        self.right(speed=mr.speed, dur=1)
+        self.right(speed=mr.speed, dur=mr.duration)
       else:
-        self.left(speed=mr.speed, dur=1)
+        self.left(speed=mr.speed, dur=mr.duration)
 

@@ -1,10 +1,12 @@
 from time import sleep
+from ultrasonic import *
 from Arbitrator import Arbitrator
 from reflectance_sensors import ReflectanceSensors
 from camera import Camera
 from derp import Derp
 from motors import Motors
 from driveToColor import driveToColor
+from watchOutForTheWall import WatchOutForTheWall
 
 class BBCON():
 
@@ -30,14 +32,16 @@ class BBCON():
       self._update_behaviors()
       mr = self.arbitrator.choose_action()
       self.motors.do(mr)
-      sleep(3)
+      sleep(1)
 
 
 rs = ReflectanceSensors()
 camera = Camera()
-sensobs = {'ir' : rs, 'camera': camera}
+ultra = Ultrasonic()
+sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra }
 
-behaviors = [Derp(8), driveToColor(sensobs, 10)]
+# behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
+behaviors = [WatchOutForTheWall(sensobs, 10)]
 
 bbcon = BBCON(behaviors, sensobs)
 while True:
