@@ -72,7 +72,7 @@ bbcon = BBCON(behaviors, sensobs)
 
 bbcon.motors.setMax(200);
 bbcon.motors.setTurnSpeed(500);
-bbcon.motors.setTurnDur(10); #bør være rundt 12
+bbcon.motors.setTurnDur(20); #bør være rundt 12
 
 print("max speed:" + str(bbcon.motors.max));
 print("waiting for press...");
