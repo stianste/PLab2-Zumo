@@ -32,7 +32,7 @@ class BBCON():
       self._update_behaviors()
       mr = self.arbitrator.choose_action()
       self.motors.do(mr)
-      sleep(1)
+      sleep(0.01)
 
 
 rs = ReflectanceSensors()
