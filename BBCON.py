@@ -22,54 +22,66 @@ class BBCON():
        
 
     def _update_sensobs(self):
+          # Increment the camera_count variable each time we check our sensors
           self.camera_count += 1
           self.camera_count = self.camera_count % 10
+
           for ob in self.sensobs:
               if ob != 'camera':
                 self.sensobs[ob].update()
+
               elif self.camera_count == 0:
+                # Only use the camera if the camera_counter is equal to zero
                 self.motors.stop()
-                self.camera_count = 0
                 self.sensobs[ob].update()
 
 
     def _update_behaviors(self):
+
         for behavior in self.behaviors:
+
           if behavior.__class__ != 'driveToColor':
-            print('No camera', self.camera_count)
-            mr = behavior.get_update() # this also toggels the active_flag for the behavior
-            if behavior.active_flag:
-                self.arbitrator.add_mr(mr)
-          elif self.camera_count == 0 and behavior.__class__ == 'driveToColor' :
-            print('CAMERA EVAL')
-            mr = behavior.get_update()
-            if behavior.active_flag:
-                self.arbitrator.add_mr(mr)
+            mr = behavior.get_update() # Get our beloved motor recommendation from the behavior
+
+
+          elif self.camera_count == 0:
+            # This elif will only trigger if the behaviour name is driveToColor
+            # Only execute if the camera_count is equal to zero
+            # This lets ut skip image processing if the picture isnt taken this iteration
+
+            mr = behavior.get_update() # Get our beloved motor recommendation from the behavior
+
+          if behavior.active_flag: # If it is active, we add it to the arbitrator for further evaluation :3
+              self.arbitrator.add_mr(mr)
 
 
     def loop(self):
-      self._update_sensobs()
-      self._update_behaviors()
-      mr = self.arbitrator.choose_action()
-      self.motors.do(mr.action)
-      sleep(0.01)
+      self._update_sensobs() # Update all sensors
+      self._update_behaviors() # Use the information to generate motor recommendations
+      mr = self.arbitrator.choose_action() # Let the great arbitrator decide what to do based on the recommendations
+      self.motors.do(mr.action) # COMPLETE THE CYCLE
+      sleep(0.01) # Sleep a little bit.. What happens if we remove this?
 
 
+# Initialize all our senobs
 button = ZumoButton();
 rs = ReflectanceSensors()
 camera = Camera()
 ultra = Ultrasonic()
+
+# Put these into a sexy dictionary
 sensobs = {'ir' : rs,  'ultrasonic' : ultra } #fjernet kamera fra sensobs: 'camera': camera,
 
-# behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
+# Intialize and add behaviors to our list
 behaviors = [];
 
 behaviors.append(WatchOutForTheWall(sensobs, 1));
-
 #behaviors.append(driveToColor(sensobs, 10))
 
+# Initialize behavior based controller
 bbcon = BBCON(behaviors, sensobs)
 
+# Motor stuff
 bbcon.motors.setMax(200);
 bbcon.motors.setTurnSpeed(400);
 bbcon.motors.setTurnDur(5); #bør være rundt 12
@@ -78,14 +90,13 @@ print("max speed:" + str(bbcon.motors.max));
 print("waiting for press...");
 print("beginning opening ritual with 180 degree turns");
 
-
 button.wait_for_press();
 sleep(2);
 
 bbcon.motors.turnAround("r",180);
 bbcon.motors.turnAround("l",180);
 
-while True and button.button_pressed():
+while True and button.button_pressed(): # button_pressed actually means button not pressed
   bbcon.loop()
 
-bbcon.motors.stop();
+bbcon.motors.stop(); # STOP MOVING PLZ
