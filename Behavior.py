@@ -29,5 +29,5 @@ class Behavior():
         self._update_flag
         self._sense_and_act()
         self.weight = self.static_priority * self.match_degree
-        self.motor_recommendation.pri = weight
+        self.motor_recommendation.pri = self.weight
         return (self.motor_recommendation)
