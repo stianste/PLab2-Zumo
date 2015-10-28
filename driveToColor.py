@@ -20,7 +20,7 @@ class driveToColor(Behavior):
           readings.append(i)
 
       center = w / 2
-      center_black = readings[(len(readings)+1)//2]
+      center_black = half if len(readings) == 0 else readings[(len(readings)+1)//2] if 
 
       if center_black > center:
         return (round(((center_black-center)/center) * 26.75))
@@ -40,7 +40,7 @@ class driveToColor(Behavior):
     def _sense_and_act(self):
       if self.active_flag:
         self.match_degree = 100
-        direction = 'r' if angle > 0 else 'l'
+        direction = 'r' if self.angle > 0 else 'l'
         self.motor_recommendation.action = [direction, abs(angle)]
       else:
         self.match_degree = 99
