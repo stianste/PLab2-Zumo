@@ -52,12 +52,15 @@ behaviors.append(TurnAtEdge(sensobs,10))
 
 bbcon = BBCON(behaviors, sensobs)
 
-bbcon.motors.setMax(400);
+bbcon.motors.setMax(200);
+bbcon.motors.setTurner(200);
+bbcon.motors.setTurnDur(10);
+
 print("max speed:" + str(bbcon.motors.max));
 button = ZumoButton();
 button.wait_for_press();
 sleep(2);
 while True and button.button_pressed():
   bbcon.loop()
-  
+
 bbcon.motors.stop();

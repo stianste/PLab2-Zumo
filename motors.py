@@ -137,9 +137,9 @@ class Motors():
     if(dir=="r"):
       print("svinger mot høyre!")
       self.set_left_dir(1)
-      self.set_left_speed(900)
+      self.set_left_speed(self.turnRate)
       self.set_right_dir(0)
-      self.set_right_speed(900)
+      self.set_right_speed(self.turnRate)
     elif(dir=="l"):
       self.set_left_dir(0)
       self.set_left_speed(self.turnRate)
@@ -147,7 +147,7 @@ class Motors():
       self.set_right_speed(self.turnRate)
     self.persist(degrees/(self.turnRate/self.turnDur)); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
-  def setTurner(self,turnRate):
+  def setTurnSpeed(self,turnRate):
     self.turnRate = turnRate;
     
   def setTurnDur(self,turnDur):
