@@ -126,9 +126,9 @@ class Motors():
         self.backward(action)
 
      elif type(action) == list:
-        dir = action[0];
-        if(dir == "r" or dir == "l"):
-          self.turnAround(dir,action[1]);
+      dir = action[0];
+      if(dir == "r" or dir == "l"):
+        self.turnAround(dir,action[1]);
 
 
   def turnAround(self,dir,degrees):
