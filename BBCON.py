@@ -16,6 +16,7 @@ class BBCON():
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
         self.arbitrator = Arbitrator()
         self.motors = Motors()
+        self.motors.setMax(400);
 
     def _update_sensobs(self):
           for ob in self.sensobs:

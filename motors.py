@@ -143,6 +143,6 @@ class Motors():
       self.set_left_speed(600)
       self.set_right_dir(1)
       self.set_right_speed(600)
-    self.persist(degrees/6); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
+    self.persist(degrees/24); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
 
