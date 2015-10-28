@@ -18,6 +18,6 @@ class ZumoButton():
 		read_val = wp.digitalRead(22)
 		print(read_val);
 		if(read_val==0):
-     print("pressed");
-			return True;
-		return False;
+     print("pressed again");
+			return False;
+		return True;
