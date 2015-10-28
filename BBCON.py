@@ -62,7 +62,8 @@ behaviors = [];
 
 #behaviors.append(WatchOutForTheWall(sensobs, 1));
 
-behaviors.append(TurnAtEdge(sensobs,10))
+behaviors.append(TurnAtEdge(sensobs, 9))
+behaviors.append(driveToColor(sensobs, 10))
 
 bbcon = BBCON(behaviors, sensobs)
 

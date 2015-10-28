@@ -15,5 +15,6 @@ class Arbitrator():
         #gets the motor_rec with highest priority, returns it and empties the queueue 
         
         val = max(self.motor_recs)
+        print(val.__class__)
         self.motor_recs = [self.forward_rec];
         return val
