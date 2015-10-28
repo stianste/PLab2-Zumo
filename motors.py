@@ -132,17 +132,18 @@ class Motors():
 		persist(degrees); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.	
 		
 	
-  def do(self, action):
+	def do(self, action):
+		print("action:" + str(action));
 		if type(action) == int:
 			if action> 0:
-       self.forward(ction)
+				self.forward(action)
 			else:
 				s = action * -1
 				self.backward(action)
-	elif type(action) == list:
-		dir = action[0];
-		if(dir == "r" or dir == "l"):
-			self.turnAround(dir,action[1]);
+		elif type(action) == list:
+			dir = action[0];
+			if(dir == "r" or dir == "l"):
+				self.turnAround(dir,action[1]);
 			
 			
 
