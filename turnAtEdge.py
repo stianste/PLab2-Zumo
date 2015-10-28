@@ -14,13 +14,16 @@ class TurnAtEdge(Behavior):
             if v < threshold:
                 self.active_flag = True
                 return True
+        self.active_flag=False
         return False
         
     def _sense_and_act(self):
         
         if self.active_flag:
             self.match_degree = 200
-            self.motor_recommendation.action = ['l', 90] 
+            self.motor_recommendation.action = ['l', 180] 
+            
         else:
             self.match_degree = 1
             self.motor_recommendation.action = 1
+        

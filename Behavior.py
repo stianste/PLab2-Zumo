@@ -26,7 +26,7 @@ class Behavior():
 
     def get_update(self):
         #Do not implement this function yourself. Use sense_and_act, and let get update do the rest
-        self._update_flag
+        self._update_flag()
         self._sense_and_act()
         self.weight = self.static_priority * self.match_degree
         self.motor_recommendation.pri = self.weight
