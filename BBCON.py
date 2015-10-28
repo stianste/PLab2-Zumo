@@ -7,7 +7,7 @@ from derp import Derp
 from motors import Motors
 from driveToColor import driveToColor
 from watchOutForTheWall import WatchOutForTheWall
-from turnAtEdge import TurnAtEgde
+from turnAtEdge import TurnAtEdge
 
 class BBCON():
 
