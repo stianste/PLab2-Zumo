@@ -58,3 +58,5 @@ button = ZumoButton();
 button.wait_for_press();
 while True and button.button_pressed():
   bbcon.loop()
+  
+motors.stop();
