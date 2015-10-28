@@ -147,11 +147,12 @@ class Motors():
       self.set_right_dir(0)
       self.set_right_speed(self.turnRate)
     elif(dir=="l"):
+      print("to the left!!")
       self.set_left_dir(0)
       self.set_left_speed(self.turnRate)
       self.set_right_dir(1)
       self.set_right_speed(self.turnRate)
-    self.persist(degrees/(self.turnRate/self.turnDur)); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
+    self.persist(degrees*self.turnDur/self.turnRate); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
   def backAndTurn(self):
     self.stop();
