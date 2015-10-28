@@ -46,7 +46,7 @@ behaviors = [WatchOutForTheWall(sensobs, 10)]
 
 bbcon = BBCON(behaviors, sensobs)
 bbcon.motors.setMax(400);
-print("max speed:" + int(bbcon.motors.max));
+print("max speed:" + str(bbcon.motors.max));
 
 while True:
   bbcon.loop()
