@@ -25,7 +25,8 @@ class BBCON():
           for ob in self.sensobs:
               if ob != 'camera':
                 self.sensobs[ob].update()
-              elif self.camera_count % 5 == 0:
+              elif self.camera_count % 10 == 0:
+                self.motors.stop()
                 self.camera_count = 0
                 self.sensobs[ob].update()
               self.camera_count += 1
@@ -37,7 +38,7 @@ class BBCON():
             mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
-          elif self.camera_count % 5 == 0:
+          elif self.camera_count % 10 == 0:
             mr = behavior.get_update()
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
