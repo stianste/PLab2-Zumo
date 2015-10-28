@@ -139,7 +139,7 @@ class Motors():
 
   def turnAround(self,dir,degrees):
     if(dir=="r"):
-      print("svinger mot høyre!")
+      print("to the right!!")
       self.set_left_dir(1)
       self.set_left_speed(self.turnRate)
       self.set_right_dir(0)
@@ -153,7 +153,8 @@ class Motors():
 
   def backAndTurn(self):
     self.stop();
-    self.backward(0.5,1);
+    print("bakka")
+    self.backward(1,2);
     self.turnAround("r",100);
     
     
