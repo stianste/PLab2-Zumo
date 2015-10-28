@@ -15,6 +15,7 @@ class Motors():
     self.low = 100
     self.turnRate = 600;
     self.turnDur = 12;
+    self.lastTurn = "r"
 
     wp.wiringPiSetupGpio()
 
@@ -155,8 +156,12 @@ class Motors():
   def backAndTurn(self):
     self.stop();
     print("bakka")
-    self.backward(1,3);
-    self.turnAround("r",100);
+    self.backward(1,1);
+    if(self.lastTurn == "r"):
+      self.lastTurn == "l";
+    else:
+      self.lastTurn == "r"
+    self.turnAround(self.lastTurn,180);
     
     
   def setTurnSpeed(self,turnRate):
