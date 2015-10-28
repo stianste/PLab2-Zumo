@@ -40,7 +40,7 @@ class BBCON():
             mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
-          elif self.camera_count == 0:
+          elif self.camera_count == 0 and behavior.__class__ == 'driveToColor' :
             print('CAMERA EVAL')
             mr = behavior.get_update()
             if behavior.active_flag:
