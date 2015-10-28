@@ -133,7 +133,7 @@ class Motors():
         self.turnAround(dir,action[1]);
         
     elif (type(action) == str):
-      if(string =="b"):
+      if(action =="b"):
         self.backAndTurn();
 
 
