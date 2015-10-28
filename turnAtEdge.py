@@ -3,15 +3,17 @@ from motor_rec import Motor_Rec
 from reflectance_sensors import *
 
 class TurnAtEdge(Behavior):
-    threshold = 0.3
+   
     def __init__(self, sensobs, pri):
             super().__init__(sensobs, True, pri)
             self.ir = sensobs['ir']
+            self.threshold = 0.3
+            
     def _update_flag(self):
         #Checks the urrent values of the ir sensor and checks if any of them are darker than threshold
         values = self.ir.get_value()
         for v in values:
-            if v < threshold:
+            if v < self.threshold:
                 self.active_flag = True
                 return True
         self.active_flag=False
