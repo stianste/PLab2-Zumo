@@ -116,12 +116,34 @@ class Motors():
   def setMax(self,max):
     self.max = max;
 
+	
+	def turnAround(self,dir,degrees):
+		if(dir=="r"):
+			self.set_left_dir(1)
+			self.set_left_speed(100)
+			self.set_right_dir(0)
+			self.set_right_speed(100)
+		elif(dir=="l"):
+			self.set_left_dir(0)
+			self.set_left_speed(100)
+			self.set_right_dir(1)
+			self.set_right_speed(100)
+			
+		persist(degrees); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.	
+		
+	
   def do(self, action):
-    if type(action) == int:
-      if action> 0:
-        self.forward(ction)
-      else:
-        s = action * -1
-        self.backward(action)
+		if type(action) == int:
+			if action> 0:
+       self.forward(ction)
+			else:
+				s = action * -1
+				self.backward(action)
+	elif type(action) == list:
+		dir = action[0];
+		if(dir == "r" or dir == "l"):
+			self.turnAround(dir,action[1]);
+			
+			
 
 
