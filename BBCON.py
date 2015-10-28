@@ -56,7 +56,8 @@ bbcon.motors.setMax(400);
 print("max speed:" + str(bbcon.motors.max));
 button = ZumoButton();
 button.wait_for_press();
+sleep(2);
 while True and button.button_pressed():
   bbcon.loop()
   
-motors.stop();
+bbcon.motors.stop();
