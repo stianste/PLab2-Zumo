@@ -7,21 +7,15 @@ class driveToColor(Behavior):
     def __init__(self, sensobs, static_pri):
         super().__init__(sensobs, True, static_pri)
 
-    def _concider_deactivation(self):
-      return
 
-    def _concider_activation(self):
-      return
-
-    def _determine_angle(self, img):
+    def _determine_angle(self, img): # Returns an angle. negative is left, right is positive
       h = img.ymax
       half = h//2
       w = img.xmax
       img = img.crop((0,half,w,half+1)) # Img is now a one-pixel tall image, same width
-      # The plan is to find the first blue pixel and the last one, then finding the center of this. Lastly, drive towards it
       readings = []
       for i in range(w):
-        rgb = img.get_pixel(i,0) # If this one is above 100 we can assume it is blue for now
+        rgb = img.get_pixel(i,0)
         if rgb[0] <= 50 and rgb[1] <= 25 and rgb[2] <= 15:
           readings.append(i)
 
@@ -34,16 +28,20 @@ class driveToColor(Behavior):
         return (round(-((center-center_black)/center) * 26.75))
 
 
-    def _sense_and_act(self):
-        img = Imager(image=self.sensobs['camera'].get_value(), mode='RGB') # Get the image from the camera sensob, the value should be updated from the bbcon
-        return self._determine_angle(img)
-
-
-
-    def get_update(self): # The bbcon asks every nth second for an update, checking if the active-flag has changed
-      angle = round(self._sense_and_act())
-      print(angle)
-      if abs(angle) < 5:
-        return Motor_Rec(0, 0, 0, 2)
+    def _update_flag(self):
+      img = Imager(image=self.sensobs['camera'].get_value(), mode='RGB')
+      self.angle = self._determine_angle(img)
+      if abs(self.angle) > 3:
+        self.active_flag = True
       else:
-        return Motor_Rec(10, angle, 1, 1)
+        self.active_flag = False
+
+
+    def _sense_and_act(self):
+      if self.active_flag:
+        self.match_degree = 100
+        direction = 'r' if angle > 0 else 'l'
+        self.motor_recommendation.action = [direction, abs(angle)]
+      else:
+        self.match_degree = 99
+        self.motor_recommendation.action = ['l', 45]
