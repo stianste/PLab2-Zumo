@@ -16,7 +16,7 @@ class WatchOutForTheWall(Behavior):
     if(distance<30 and distance>0):
       degrees = 180 - 6*distance;
       action = ["r",degrees];
-      print("sving: " + int(degrees) );
+      print("sving: " + str(degrees) );
     
     else:
       action = 1;
