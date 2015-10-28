@@ -10,7 +10,7 @@ class WatchOutForTheWall(Behavior):
   def get_update(self):
     action = 0.25;
     score=10;
-    values = self.sensobs['ultrasonic'].get_value()
+    distance = self.sensobs['ultrasonic'].get_value()
     print("distance: " + str(distance));
 
     if(distance<15 and distance>0):
