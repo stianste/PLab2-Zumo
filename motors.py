@@ -13,6 +13,8 @@ class Motors():
     self.high = 500
     self.normal = 300
     self.low = 100
+    self.turnRate = 600;
+    self.turnDur = 12;
 
     wp.wiringPiSetupGpio()
 
@@ -140,9 +142,13 @@ class Motors():
       self.set_right_speed(900)
     elif(dir=="l"):
       self.set_left_dir(0)
-      self.set_left_speed(900)
+      self.set_left_speed(self.turnRate)
       self.set_right_dir(1)
-      self.set_right_speed(900)
-    self.persist(degrees/70); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
+      self.set_right_speed(self.turnRate)
+    self.persist(degrees/(self.turnRate/self.turnDur)); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
-
+  def setTurner(self,turnRate):
+    self.turnRate = turnRate;
+    
+  def setTurnDur(self,turnDur):
+    self.turnDur = turnDur;
