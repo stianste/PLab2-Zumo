@@ -7,6 +7,7 @@ from derp import Derp
 from motors import Motors
 from driveToColor import driveToColor
 from watchOutForTheWall import WatchOutForTheWall
+from turnAtEdge import TurnAtEgde
 
 class BBCON():
 
@@ -42,9 +43,12 @@ ultra = Ultrasonic()
 sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra }
 
 # behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
-behaviors = [WatchOutForTheWall(sensobs, 10)]
+behaviors = [WatchOutForTheWall(sensobs, 1)]
+
+behaviors.append(TurnAtEgde(sensobs))
 
 bbcon = BBCON(behaviors, sensobs)
+
 bbcon.motors.setMax(400);
 print("max speed:" + str(bbcon.motors.max));
 
