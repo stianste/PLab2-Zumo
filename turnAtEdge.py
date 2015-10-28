@@ -24,7 +24,7 @@ class TurnAtEdge(Behavior):
         
         if self.active_flag:
             self.match_degree = 200
-            self.motor_recommendation.action = ['l', 180] 
+            self.motor_recommendation.action = "b" 
             
         else:
             self.match_degree = 1

@@ -131,6 +131,10 @@ class Motors():
       dir = action[0];
       if(dir == "r" or dir == "l"):
         self.turnAround(dir,action[1]);
+        
+    elif (type(action) == string):
+      if(string =="b"):
+        self.backAndTurn();
 
 
   def turnAround(self,dir,degrees):
@@ -147,6 +151,12 @@ class Motors():
       self.set_right_speed(self.turnRate)
     self.persist(degrees/(self.turnRate/self.turnDur)); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
+  def backAndTurn(self):
+    self.stop();
+    self.backward(0.5,1);
+    self.turnAround("r",100);
+    
+    
   def setTurnSpeed(self,turnRate):
     self.turnRate = turnRate;
     
