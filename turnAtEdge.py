@@ -4,8 +4,7 @@ from reflectance_sensors import *
 
 class TurnAtEdge(Behavior):
     threshold = 0.3
-    pri = 10
-    def __init__(self, sensobs):
+    def __init__(self, sensobs, pri):
             super().__init__(sensobs, True, pri)
             self.ir = sensobs['ir'].get_value()
     def _update_flag(self):
@@ -18,11 +17,10 @@ class TurnAtEdge(Behavior):
         return False
         
     def _sense_and_act(self):
-        speed_value = 0.25;
-        turn_value = 0.0;
-        score=10;
-        values = self.sensobs['ir'].get_value()
-        #print("distance: " + str(values));
+        
         if self.active_flag:
             self.match_degree = 200
             self.motor_recommendation.action = ['l', 90] 
+        else:
+            self.match_degree = 1
+            self.motor_recommendation.action = 1
