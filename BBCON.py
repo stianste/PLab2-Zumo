@@ -58,7 +58,7 @@ class BBCON():
 rs = ReflectanceSensors()
 camera = Camera()
 ultra = Ultrasonic()
-sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra } #fjernet kamera fra sensobs: 
+sensobs = {'ir' : rs,  'ultrasonic' : ultra } #fjernet kamera fra sensobs: 'camera': camera,
 
 # behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
 behaviors = [];
@@ -74,6 +74,7 @@ bbcon.motors.setTurnSpeed(500);
 bbcon.motors.setTurnDur(10); #bør være rundt 12
 
 print("max speed:" + str(bbcon.motors.max));
+print("waiting for press...");
 button = ZumoButton();
 button.wait_for_press();
 sleep(2);
