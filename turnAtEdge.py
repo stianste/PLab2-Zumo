@@ -12,6 +12,7 @@ class TurnAtEdge(Behavior):
     def _update_flag(self):
         #Checks the urrent values of the ir sensor and checks if any of them are darker than threshold
         values = self.ir.get_value()
+        print(values);
         for v in values:
             if v < self.threshold:
                 self.active_flag = True
