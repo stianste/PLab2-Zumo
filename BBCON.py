@@ -76,6 +76,7 @@ bbcon.motors.setTurnDur(5); #bør være rundt 12
 
 print("max speed:" + str(bbcon.motors.max));
 print("waiting for press...");
+print("beginning opening ritual with 180 degree turns");
 
 
 button.wait_for_press();
