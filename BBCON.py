@@ -8,6 +8,7 @@ from motors import Motors
 from driveToColor import driveToColor
 from watchOutForTheWall import WatchOutForTheWall
 from turnAtEdge import TurnAtEdge
+from zumo_button import ZumoButton
 
 class BBCON():
 
@@ -53,6 +54,7 @@ bbcon = BBCON(behaviors, sensobs)
 
 bbcon.motors.setMax(400);
 print("max speed:" + str(bbcon.motors.max));
-
-while True:
+button = ZumoButton();
+button.wait_for_press();
+while True and button.button_pressed():
   bbcon.loop()
