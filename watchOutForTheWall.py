@@ -6,8 +6,7 @@ from ultrasonic import *
 class WatchOutForTheWall(Behavior):
   def __init__(self, sensobs, static_pri):
     super().__init__(sensobs, True, static_pri)
-	
-	
+
   def get_update(self):
     action = 0.25;
     score=10;
@@ -15,8 +14,8 @@ class WatchOutForTheWall(Behavior):
     print("distance: " + str(distance));
 
     if(distance<15 and distance>0):
-		action = ["r",45];
-		print("sving!")
+      action = ["r",45];
+      print("sving!")
     elif distance<15 and distance>0:
       action = 0;
     elif(distance<40 and distance>0):
