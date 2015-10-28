@@ -55,6 +55,7 @@ class BBCON():
       sleep(0.01)
 
 
+button = ZumoButton();
 rs = ReflectanceSensors()
 camera = Camera()
 ultra = Ultrasonic()
@@ -75,7 +76,7 @@ bbcon.motors.setTurnDur(10); #bør være rundt 12
 
 print("max speed:" + str(bbcon.motors.max));
 print("waiting for press...");
-button = ZumoButton();
+
 bbcon.motors.turnAround("r",180);
 bbcon.motors.turnAround("l",180);
 
