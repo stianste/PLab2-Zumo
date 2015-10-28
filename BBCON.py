@@ -76,6 +76,9 @@ bbcon.motors.setTurnDur(10); #bør være rundt 12
 print("max speed:" + str(bbcon.motors.max));
 print("waiting for press...");
 button = ZumoButton();
+bbcon.motors.turnAround("r",180);
+bbcon.motors.turnAround("l",180);
+
 button.wait_for_press();
 sleep(2);
 while True and button.button_pressed():
