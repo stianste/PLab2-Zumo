@@ -58,14 +58,14 @@ class BBCON():
 rs = ReflectanceSensors()
 camera = Camera()
 ultra = Ultrasonic()
-sensobs = {'ir' : rs, 'ultrasonic' : ultra } #fjernet kamera fra sensobs: 'camera': camera, 
+sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra } #fjernet kamera fra sensobs: 
 
 # behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
 behaviors = [];
 
-#behaviors.append(WatchOutForTheWall(sensobs, 1));
+behaviors.append(WatchOutForTheWall(sensobs, 1));
 
-behaviors.append(driveToColor(sensobs, 10))
+#behaviors.append(driveToColor(sensobs, 10))
 
 bbcon = BBCON(behaviors, sensobs)
 
