@@ -135,14 +135,14 @@ class Motors():
     if(dir=="r"):
       print("svinger mot høyre!")
       self.set_left_dir(1)
-      self.set_left_speed(400)
+      self.set_left_speed(600)
       self.set_right_dir(0)
-      self.set_right_speed(400)
+      self.set_right_speed(600)
     elif(dir=="l"):
       self.set_left_dir(0)
-      self.set_left_speed(100)
+      self.set_left_speed(600)
       self.set_right_dir(1)
-      self.set_right_speed(100)
-    self.persist(degrees); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
+      self.set_right_speed(600)
+    self.persist(degrees/50); #her må vi nok tweeke slik at det passer antall grader. Persist gjør at den utfører handlingen i gitt tid.			
 
 

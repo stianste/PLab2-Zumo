@@ -16,6 +16,7 @@ class BBCON():
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
         self.arbitrator = Arbitrator()
         self.motors = Motors()
+       
 
     def _update_sensobs(self):
           for ob in self.sensobs:
@@ -44,5 +45,8 @@ sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra }
 behaviors = [WatchOutForTheWall(sensobs, 10)]
 
 bbcon = BBCON(behaviors, sensobs)
+bbcon.motors.setMax(400);
+print("max speed:" + str(bbcon.motors.max));
+
 while True:
   bbcon.loop()
