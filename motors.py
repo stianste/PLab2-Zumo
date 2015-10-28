@@ -116,16 +116,11 @@ class Motors():
   def setMax(self,max):
     self.max = max;
 
-  def do(self, mr):
-    if mr.degrees == 0:
-      if mr.speed > 0:
-        self.forward(speed=mr.speed, dur=mr.duration)
+  def do(self, action):
+    if type(action) == int:
+      if action> 0:
+        self.forward(ction)
       else:
-        s = mr.speed * -1
-        self.backward(speed=s)
-    else:
-      if mr.degrees > 0:
-        self.right(speed=mr.speed, dur=mr.duration)
-      else:
-        self.left(speed=mr.speed, dur=mr.duration)
+        s = action * -1
+        self.backward(action)
 

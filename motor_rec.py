@@ -1,9 +1,9 @@
 class Motor_Rec():
-    def __init__(self, pri, degrees, speed, duration):
+    def __init__(self, pri, action):
         self.pri = pri
-        self.degrees = degrees
-        self.speed = speed
-        self.duration = duration
+        self.action = action
+       
+		
     def __lt__(self, other):
         return self.pri < other.pri
     def __le__(self, other):
