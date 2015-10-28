@@ -16,19 +16,32 @@ class BBCON():
         #init instance variables from input.
         self.behaviors = set(behaviors)
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
+        self.camera_count = 0
         self.arbitrator = Arbitrator()
         self.motors = Motors()
        
 
     def _update_sensobs(self):
           for ob in self.sensobs:
-              self.sensobs[ob].update()
+              if ob != 'camera':
+                self.sensobs[ob].update()
+              elif self.camera_count % 5 == 0:
+                self.camera_count = 0
+                self.sensobs[ob].update()
+              self.camera_count += 1
+
 
     def _update_behaviors(self):
         for behavior in self.behaviors:
+          if behavior.__class__ != 'driveToColor':
             mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
+          elif self.camera_count % 5 == 0:
+            mr = behavior.get_update()
+            if behavior.active_flag:
+                self.arbitrator.add_mr(mr)
+
 
     def loop(self):
       self._update_sensobs()
