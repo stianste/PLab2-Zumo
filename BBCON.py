@@ -22,23 +22,26 @@ class BBCON():
        
 
     def _update_sensobs(self):
+          self.camera_count += 1
+          self.camera_count = self.camera_count % 10
           for ob in self.sensobs:
               if ob != 'camera':
                 self.sensobs[ob].update()
-              elif self.camera_count % 10 == 0:
+              elif self.camera_count == 0:
                 self.motors.stop()
                 self.camera_count = 0
                 self.sensobs[ob].update()
-              self.camera_count += 1
 
 
     def _update_behaviors(self):
         for behavior in self.behaviors:
           if behavior.__class__ != 'driveToColor':
+            print('No camera', self.camera_count)
             mr = behavior.get_update() # this also toggels the active_flag for the behavior
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
-          elif self.camera_count % 10 == 0:
+          elif self.camera_count == 0:
+            print('CAMERA EVAL')
             mr = behavior.get_update()
             if behavior.active_flag:
                 self.arbitrator.add_mr(mr)
@@ -62,7 +65,6 @@ behaviors = [];
 
 #behaviors.append(WatchOutForTheWall(sensobs, 1));
 
-behaviors.append(TurnAtEdge(sensobs, 9))
 behaviors.append(driveToColor(sensobs, 10))
 
 bbcon = BBCON(behaviors, sensobs)

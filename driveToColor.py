@@ -44,4 +44,4 @@ class driveToColor(Behavior):
         self.motor_recommendation.action = [direction, abs(self.angle)]
       else:
         self.match_degree = 1
-        self.motor_recommendation.action = ['l', 45]
+        self.motor_recommendation.action = ['l', 10]

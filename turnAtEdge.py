@@ -27,6 +27,6 @@ class TurnAtEdge(Behavior):
             self.motor_recommendation.action = "b" 
             
         else:
-            self.match_degree = 1
+            self.match_degree = 100
             self.motor_recommendation.action = 1
         
