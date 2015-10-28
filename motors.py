@@ -125,7 +125,7 @@ class Motors():
         s = action * -1
         self.backward(action)
 
-     elif type(action) == list:
+     elif (type(action) == list):
       dir = action[0];
       if(dir == "r" or dir == "l"):
         self.turnAround(dir,action[1]);
