@@ -1,3 +1,5 @@
+from motor_rec import Motor_Rec
+
 class Behavior():
     # constructor that takes in the bbcon this Behavior is reporting to, what sensors it uses,
     # if it is currently active, and a static priority. 
