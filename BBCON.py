@@ -58,7 +58,7 @@ class BBCON():
 rs = ReflectanceSensors()
 camera = Camera()
 ultra = Ultrasonic()
-sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra }
+sensobs = {'ir' : rs, 'ultrasonic' : ultra } #fjernet kamera fra sensobs: 'camera': camera, 
 
 # behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
 behaviors = [];
