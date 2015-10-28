@@ -135,9 +135,9 @@ class Motors():
     if(dir=="r"):
       print("svinger mot høyre!")
       self.set_left_dir(1)
-      self.set_left_speed(100)
+      self.set_left_speed(400)
       self.set_right_dir(0)
-      self.set_right_speed(100)
+      self.set_right_speed(400)
     elif(dir=="l"):
       self.set_left_dir(0)
       self.set_left_speed(100)
