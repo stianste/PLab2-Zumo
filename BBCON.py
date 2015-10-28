@@ -31,7 +31,7 @@ class BBCON():
       self._update_sensobs()
       self._update_behaviors()
       mr = self.arbitrator.choose_action()
-      self.motors.do(mr)
+      self.motors.do(mr.action)
       sleep(0.01)
 
 
