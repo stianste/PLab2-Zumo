@@ -45,6 +45,7 @@ class Motors():
   def backward(self, speed=0.25, dur=None):
     self.set_left_dir(1)
     self.set_right_dir(1)
+    self.dc = int(self.max * speed)
     self.set_left_speed(self.dc)
     self.set_right_speed(self.dc)
     self.dc = int(self.max * speed)
@@ -154,7 +155,7 @@ class Motors():
   def backAndTurn(self):
     self.stop();
     print("bakka")
-    self.backward(1,2);
+    self.backward(1,3);
     self.turnAround("r",100);
     
     
