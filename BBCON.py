@@ -43,9 +43,11 @@ ultra = Ultrasonic()
 sensobs = {'ir' : rs, 'camera': camera, 'ultrasonic' : ultra }
 
 # behaviors = [Derp(8), driveToColor(sensobs, 10), WatchOutForTheWall(sensobs, 10)]
-behaviors = [WatchOutForTheWall(sensobs, 1)]
+behaviors = [];
 
-behaviors.append(TurnAtEgde(sensobs))
+#behaviors.append(WatchOutForTheWall(sensobs, 1));
+
+behaviors.append(TurnAtEgde(sensobs,10))
 
 bbcon = BBCON(behaviors, sensobs)
 
