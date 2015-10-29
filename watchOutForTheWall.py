@@ -13,9 +13,9 @@ class WatchOutForTheWall(Behavior):
     distance = self.sensobs['ultrasonic'].get_value()
     print(distance)
 
-    if(distance<15 and distance>0):
+    if(distance<10 and distance>0):
       self.active_flag = True
-      degrees = 180 - 12*distance;
+      degrees = 180 - 18*distance;
       action = ["r",degrees];
     else:
       self.active_flag = False

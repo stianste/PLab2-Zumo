@@ -2,6 +2,7 @@
 from time import sleep
 import RPi.GPIO as GPIO
 import wiringpi2 as wp
+from random import randint
 
 
 class Motors():
@@ -153,13 +154,17 @@ class Motors():
   def backAndTurn(self):
     self.stop();
     self.backward(1,1);
-    if(self.lastTurn == "r"):
-      self.lastTurn == "l";
-    else:
-      self.lastTurn == "r"
-    self.turnAround(self.lastTurn,180);
+    dir = self.getRandDir
+    degrees = random.randint(90,270)
+    self.turnAround(dir,degrees);
     
+  
+  def getRandomDir(self):
+    if random.randint(0,1) == 1:
+      return "l":
+    return "r"
     
+   
   def setTurnSpeed(self,turnRate):
     self.turnRate = turnRate;
     
