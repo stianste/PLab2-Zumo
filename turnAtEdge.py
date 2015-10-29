@@ -12,7 +12,6 @@ class TurnAtEdge(Behavior):
     def _update_flag(self):
         #Checks the urrent values of the ir sensor and checks if any of them are darker than threshold
         values = self.ir.get_value()
-        print(values);
         for v in values:
             if v < self.threshold:
                 self.active_flag = True
@@ -25,8 +24,5 @@ class TurnAtEdge(Behavior):
         if self.active_flag:
             self.match_degree = 200
             self.motor_recommendation.action = "b" 
-            
-        else:
-            self.match_degree = 100
-            self.motor_recommendation.action = 1
+            self.motor_recommendation.description = 'WATCH OUT, THE WALL!!!!'
         

@@ -76,8 +76,9 @@ sensobs = {'ir' : rs,  'ultrasonic' : ultra, 'camera' : camera }
 # Intialize and add behaviors to our list
 behaviors = [];
 
-#behaviors.append(WatchOutForTheWall(sensobs, 1));
-behaviors.append(driveToColor(sensobs, 10))
+behaviors.append(WatchOutForTheWall(sensobs, 5));
+behaviors.append(TurnAtEdge(sensobs, 5));
+behaviors.append(driveToColor(sensobs, 8))
 
 # Initialize behavior based controller
 bbcon = BBCON(behaviors, sensobs)

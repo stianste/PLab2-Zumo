@@ -3,7 +3,7 @@ from motor_rec import Motor_Rec
 
 class Arbitrator():
     def __init__(self):
-        self.forward_rec = Motor_Rec(1,1);
+        self.forward_rec = Motor_Rec(1,1, 'Default, drive forward');
         self.motor_recs = [self.forward_rec] #instansiates a min queue of motor_recommendations
 
     def add_mr(self, motor_rec):

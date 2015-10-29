@@ -14,13 +14,28 @@ class driveToColor(Behavior):
       w = img.xmax
       img = img.crop((0,half,w,half+1)) # Img is now a one-pixel tall image, same width
       readings = []
-      for i in range(w):
-        rgb = img.get_pixel(i,0)
-        if rgb[0] <= 50 and rgb[1] <= 25 and rgb[2] <= 15:
-          readings.append(i)
+      big_first = 0
+      big_last = w-1
+      big_counter = 0
+      first, last, counter = 0, 0, 0
+
+      for cur in range(w):
+        rgb = img.get_pixel(cur,0)
+        if rgb[0] >= 120 and rgb[1] >= 120 and rgb[2] >= 80:
+          if cur - last <= 2: # If the next pixel is within 2 pixels of the last we visited
+            last = cur # Flytter last frem, hvis det stemmer
+            counter += 1
+            if counter > big_counter: # If the current streak is bigger
+               big_first = first
+               big_last = last
+               big_counter = counter
+          else:
+            first = cur
+            last = cur
+            counter = 0
 
       center = w / 2
-      center_black = half if len(readings) <= 2 else readings[(len(readings)+1)//2]
+      center_black = (big_first+big_last)//2 if big_counter >= 10 else center
 
       if center_black > center:
         return (round(((center_black-center)/center) * 26.75))
@@ -42,3 +57,5 @@ class driveToColor(Behavior):
         self.match_degree = 100
         direction = 'l' if self.angle > 0 else 'r'
         self.motor_recommendation.action = [direction, abs(self.angle)]
+        self.motor_recommendation.description = 'Drive to color'
+
