@@ -161,7 +161,7 @@ class Motors():
   
   def getRandomDir(self):
     if random.randint(0,1) == 1:
-      return "l":
+      return "l"
     return "r"
     
    
