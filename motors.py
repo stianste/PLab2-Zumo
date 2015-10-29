@@ -155,12 +155,12 @@ class Motors():
     self.stop();
     self.backward(1,1);
     dir = self.getRandomDir()
-    degrees = random.randint(90,270)
+    degrees = randint(90,270)
     self.turnAround(dir,degrees);
     
   
   def getRandomDir(self):
-    if random.randint(0,1) == 1:
+    if randint(0,1) == 1:
       return "l"
     return "r"
     
