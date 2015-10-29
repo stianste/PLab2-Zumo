@@ -154,7 +154,7 @@ class Motors():
   def backAndTurn(self):
     self.stop();
     self.backward(1,1);
-    dir = self.getRandDir
+    dir = self.getRandomDir()
     degrees = random.randint(90,270)
     self.turnAround(dir,degrees);
     
