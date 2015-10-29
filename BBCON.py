@@ -16,7 +16,7 @@ class BBCON():
         #init instance variables from input.
         self.behaviors = set(behaviors)
         self.sensobs = sensobs # Dictionary of sensobject, 'camera' -> camera sensobj
-        self.camera_count = 0
+        self.camera_count = -1
         self.arbitrator = Arbitrator()
         self.motors = Motors()
 
@@ -30,6 +30,7 @@ class BBCON():
               self.sensobs[ob].update()
 
             elif self.camera_count == 0:
+              print('Smile for the camera!')
               # Only use the camera if the camera_counter is equal to zero
               self.motors.stop()
               self.sensobs[ob].update()
@@ -38,7 +39,7 @@ class BBCON():
 
         for behavior in self.behaviors:
 
-          if behavior.__class__ != 'driveToColor':
+          if behavior.__class__.__name__ != 'driveToColor':
             mr = behavior.get_update() # Get our beloved motor recommendation from the behavior
 
 
@@ -48,9 +49,11 @@ class BBCON():
             # This lets ut skip image processing if the picture isnt taken this iteration
 
             mr = behavior.get_update() # Get our beloved motor recommendation from the behavior
+            print('Process camera image')
 
           if behavior.active_flag: # If it is active, we add it to the arbitrator for further evaluation :3
             self.arbitrator.add_mr(mr)
+            behavior.active_flag = False
 
 
     def loop(self):
@@ -68,13 +71,13 @@ camera = Camera()
 ultra = Ultrasonic()
 
 # Put these into a sexy dictionary
-sensobs = {'ir' : rs,  'ultrasonic' : ultra } #fjernet kamera fra sensobs: 'camera': camera,
+sensobs = {'ir' : rs,  'ultrasonic' : ultra, 'camera' : camera }
 
 # Intialize and add behaviors to our list
 behaviors = [];
 
-behaviors.append(WatchOutForTheWall(sensobs, 1));
-#behaviors.append(driveToColor(sensobs, 10))
+#behaviors.append(WatchOutForTheWall(sensobs, 1));
+behaviors.append(driveToColor(sensobs, 10))
 
 # Initialize behavior based controller
 bbcon = BBCON(behaviors, sensobs)
