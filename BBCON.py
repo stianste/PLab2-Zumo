@@ -19,22 +19,20 @@ class BBCON():
         self.camera_count = 0
         self.arbitrator = Arbitrator()
         self.motors = Motors()
-       
 
     def _update_sensobs(self):
-          # Increment the camera_count variable each time we check our sensors
-          self.camera_count += 1
-          self.camera_count = self.camera_count % 10
+        # Increment the camera_count variable each time we check our sensors
+        self.camera_count += 1
+        self.camera_count = self.camera_count % 10
 
-          for ob in self.sensobs:
-              if ob != 'camera':
-                self.sensobs[ob].update()
+        for ob in self.sensobs:
+            if ob != 'camera':
+              self.sensobs[ob].update()
 
-              elif self.camera_count == 0:
-                # Only use the camera if the camera_counter is equal to zero
-                self.motors.stop()
-                self.sensobs[ob].update()
-
+            elif self.camera_count == 0:
+              # Only use the camera if the camera_counter is equal to zero
+              self.motors.stop()
+              self.sensobs[ob].update()
 
     def _update_behaviors(self):
 
@@ -52,7 +50,7 @@ class BBCON():
             mr = behavior.get_update() # Get our beloved motor recommendation from the behavior
 
           if behavior.active_flag: # If it is active, we add it to the arbitrator for further evaluation :3
-              self.arbitrator.add_mr(mr)
+            self.arbitrator.add_mr(mr)
 
 
     def loop(self):

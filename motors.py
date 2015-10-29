@@ -121,7 +121,6 @@ class Motors():
     self.max = max;
 
   def do(self, action):
-    print("action:" + str(action));
     if type(action) == int:
       if action> 0:
         self.forward(action)
@@ -133,7 +132,6 @@ class Motors():
       dir = action[0];
       if(dir == "r" or dir == "l"):
         self.turnAround(dir,action[1]);
-        
     elif (type(action) == str):
       if(action =="b"):
         self.backAndTurn();
@@ -141,13 +139,11 @@ class Motors():
 
   def turnAround(self,dir,degrees):
     if(dir=="r"):
-      print("to the right!!")
       self.set_left_dir(1)
       self.set_left_speed(self.turnRate)
       self.set_right_dir(0)
       self.set_right_speed(self.turnRate)
     elif(dir=="l"):
-      print("to the left!!")
       self.set_left_dir(0)
       self.set_left_speed(self.turnRate)
       self.set_right_dir(1)
@@ -156,7 +152,6 @@ class Motors():
 
   def backAndTurn(self):
     self.stop();
-    print("bakka")
     self.backward(1,1);
     if(self.lastTurn == "r"):
       self.lastTurn == "l";

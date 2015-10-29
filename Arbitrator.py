@@ -5,7 +5,6 @@ class Arbitrator():
     def __init__(self):
         self.forward_rec = Motor_Rec(1,1);
         self.motor_recs = [self.forward_rec] #instansiates a min queue of motor_recommendations
-        
 
     def add_mr(self, motor_rec):
 
@@ -13,7 +12,14 @@ class Arbitrator():
 
     def choose_action(self):
         #gets the motor_rec with highest priority, returns it and empties the queueue 
-        
         val = max(self.motor_recs)
+
+        print('Motor recommendations received by the arbitrator: ')
+        formatted = map(lambda mr: ('Pri: %d, Action: %r, Description: %s' % (mr.pri, mr.action, mr.description)), self.motor_recs)
+        for string in formatted:
+          print(string)
+        print('---')
+        print('The arbitrator chose the one with the hightest priority: %s' % val.description)
+
         self.motor_recs = [self.forward_rec];
         return val

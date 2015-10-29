@@ -11,13 +11,10 @@ class WatchOutForTheWall(Behavior):
     action = 0.25;
     score=10;
     distance = self.sensobs['ultrasonic'].get_value()
-    print("distance: " + str(distance));
 
     if(distance<15 and distance>0):
       degrees = 180 - 12*distance;
       action = ["r",degrees];
-      print("sving: " + str(degrees) );
-    
     else:
       action = 1;
-    return Motor_Rec(10, action)
+    return Motor_Rec(10, action, 'watchOutForTheWall - distance:' + str(distance))
